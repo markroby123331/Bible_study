@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+ <link rel="icon" href="/Picture1.png" type="image/png" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: url("indexback.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #ffffff;
+    }
+
+    .login-container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 350px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      background: #fff;
+      border-radius: 5px;
+      padding: 0 10px;
+    }
+
+    .input-group ion-icon {
+      margin-right: 8px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .input-group input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      background: none;
+      color: #000;
+      outline: none;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #d59554;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-button:hover {
+      background-color: #c0803d;
+    }
+
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      color: #ffcccc;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #ffffff;
+    }
+
+    footer a {
+      color: #d59554;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <form class="login-container" action="/login" method="POST">
+    <% if (pass === 3) { %>
+      <h2>Hello, <%= username %></h2>
+      <div class="message">You are already logged in from another session.</div>
+      <input type="hidden" name="logout_input" value="<%= username %>">
+      <button class="login-button" type="submit">Log Out</button>
+    <% } else { %>
+      <h2>Login</h2>
+
+      <!-- Username -->
+      <div class="input-group">
+        <ion-icon name="person-outline"></ion-icon>
+        <input type="text" name="username_up" placeholder="Username" required value="<%= typeof username !== 'undefined' ? username : '' %>" />
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <input type="password" name="Password_up" placeholder="Password" required />
+      </div>
+
+      <!-- Submit -->
+      <button class="login-button" type="submit">Sign In</button>
+
+      <!-- Error Messages -->
+      <% if (pass === 0) { %>
+        <div class="message">Incorrect password</div>
+      <% } else if (pass === 2) { %>
+        <div class="message">Username not found</div>
+      <% } %>
+    <% } %>
+  </form>
+
+  <footer>
+    <p>Developed by <a href="https://www.linkedin.com/in/mark-roby-shafik/" target="_blank">Mark</a></p>
+    <p>&copy; 2024 All rights reserved.</p>
+  </footer>
+
+  <!-- Ionicons (icon support) -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

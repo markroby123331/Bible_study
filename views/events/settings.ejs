@@ -1,0 +1,122 @@
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الإعدادات</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div class="navigation">
+  <div class="toggle"></div>
+  <div class="fullscreen">
+    <i class="icon" ><ion-icon name="resize-outline" onclick="changeIcon(this)"></ion-icon></i>
+  </div>
+  <ul>
+
+    <li class="list">
+      <a href="/main_ops">
+        <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
+        <span class="title">إنشاء عقد </span>
+      </a>
+    </li>
+
+    <li class="list">
+      <a href="/contracts-amal">
+        <span class="icon"><ion-icon name="file-tray-full-outline"></ion-icon></span>
+        <span class="title">العقود</span>
+      </a>
+    </li>
+
+    <li class="list">
+      <a href="/contractors">
+        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+        <span class="title">المقاولين</span>
+      </a>
+    </li>
+
+    <li class="list">
+      <a href="/reports">
+        <span class="icon"><ion-icon name="podium-outline"></ion-icon></span>
+        <span class="title">التقارير</span>
+      </a>
+    </li>
+
+    <li class="list active">
+      <a href="/settings">
+        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+        <span class="title">الإعدادات</span>
+      </a>
+    </li>
+
+    <li class="list">
+      <a href="/login">
+        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+        <span class="title">خروج</span>
+      </a>
+    </li>
+
+  </ul>
+  
+</div>
+
+<div class="main">
+<div class="header">
+  <h1>الإعدادات</h1>
+
+  <div class="headerTitle" >
+    <h1 class="h1"><%= user_data.user %></h1>
+  </div>
+
+  <span class="title" style="left: 150px;">
+
+    
+
+    <ion-icon name="person-circle"></ion-icon>
+    <a href="/home" style="text-decoration:none">
+    <ion-icon name="home"></ion-icon>
+  </a>
+  
+  </span>
+  <img style=" position: absolute; height: 30px; top: 20px; left: 20px; " src="\logo2.png" style="text-decoration:none">
+
+</div>
+<div class="tools"></div>
+<div class="material">
+  <i class="fa fa-bars" onclick="changeIcon"></i>
+</div>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+  let navigation = document.querySelector('.navigation');
+  let toggle = document.querySelector('.toggle');
+  let main = document.querySelector('.main');
+  toggle.onclick = function (){
+    navigation.classList.toggle('active');
+    main.classList.toggle('active');
+  }  
+</script>
+
+<script>
+    let list = document.querySelectorAll('.list');
+  for (let i=0; i<list.length; i++){
+    list[i].onclick = function(){
+      let j = 0;
+      while(j < list.length){
+        list[j++].className = 'list';
+      }
+      list[i].className = 'list active';
+    }
+  }
+</script>
+
+<script>
+  let changeIcon = function(icon) {
+    icon.classList.toggle('scan-outline');
+  }
+</script>
+
+</body>
+</html>

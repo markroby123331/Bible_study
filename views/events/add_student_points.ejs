@@ -1,0 +1,385 @@
+<html lang="ar" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <title>Sanaway Bible</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <link rel="icon" href="/Picture1.png" type="image/png" />
+    <link href="http://localhost:8080/assets/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="http://localhost:8080/assets/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="http://localhost:8080/assets/css/custom.css" rel="stylesheet" />
+
+    <link href='http://localhost:8080/http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'
+        type='text/css' />
+    <!-- <style>
+    body {background-image: image-set("\indexback.jpg");
+          background-size: 100%;
+          background-position-y: -170px;
+          text-align: center;
+          font-family: 'Open Sans', sans-serif;}
+ @media (max-width:1800px) {
+  .glass-panel{
+    top: 20%;
+    left: 20%;
+    position: fixed; 
+  }
+ 
+ .icon{
+  width: 100%;
+  height: 80%;
+ }
+  .icon-inner {
+    width: 100%;
+    height: 80%;
+  }
+  .title{
+    font-size: smaller;
+    /* width: 800%;
+    height: 100%; */
+  }
+}
+ @media (max-width:900px) {
+  .glass-panel{
+    top: 20%;
+    left: 1.5%;
+    position: fixed; 
+  }
+ .glass-button{
+  width: 100px;
+  height: 100px;
+  /* position: fixed; */
+
+ }
+  .icon-inner {
+    width: 50%;
+    height: 50%;
+  }
+  .title{
+    width: 50%;
+    height: 50%;
+  }
+}
+
+ @media  (max-width:800px) {
+ 
+ .glass-button{
+  width: 100px;
+  height: 100px;
+ }
+  .right {
+    width: 100%;
+  }
+}
+@media only screen and (max-width:500px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+
+footer {
+     
+     color: #ffffff;
+     text-align: center;
+     padding: 20px;
+     position: fixed;
+     bottom: 0;
+     width: 100%;
+     font-family: Arial, sans-serif;
+   }
+
+   footer a {
+     color: #d59554;
+     text-decoration: none;
+     margin: 0 5px;
+   }
+
+   footer a:hover {
+     text-decoration: underline;
+   }
+   
+ 
+    
+  </style> -->
+    <style>
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .checkbox-group {
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-group input {
+            margin-right: 0.5rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056cc;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 1rem;
+            }
+        }
+
+        #submitBtn:disabled {
+            background-color: #ccc !important;
+            color: #666;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;Sanawy Bible</a>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li class="text-center user-image-back">
+                        <img src="assets/img/find_user.png" class="img-responsive" />
+                        <h3 style="color: antiquewhite;">
+                            <%= user_data.user %>
+                        </h3>
+
+                    </li>
+
+ <li>
+                    <a href="/attendance"><i class="fa fa-desktop "></i>attendance</a>
+                </li>
+              
+
+                <li>
+                    <a href="/add_student"><i class="fa fa-table "></i> Add Student</a>
+                </li>
+                <li>
+                    <a href="/ranking"><i class="fa fa-edit "></i>Ranking </a>
+                </li>
+
+
+              
+                <li>
+                    <a href="/all_student"><i class="fa fa-qrcode "></i>All Student</a>
+                </li>
+                <li>
+                    <a href="/add_student_points"><i class="fa fa-bar-chart-o"></i>Add Points</a>
+                </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Admin Dashboard</h2>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-container">
+                            <h2>Student Activity Tracker</h2>
+                            <form id="studentForm" action="/add_student_points" method="POST">
+                                <div>
+                                    <input type="text" id="student_name_input" placeholder="Student Name"
+                                        name="student_name" required list="student_name0" />
+                                    <datalist id="student_name0">
+                                        <% emp.forEach(student=> { %>
+                                            <option value="<%= student.student_name %>"></option>
+                                            <% }); %>
+                                    </datalist>
+
+                                    <input type="tel" id="student_phone_input" placeholder="Phone Number"
+                                        name="student_phone" list="student_number0" required />
+                                    <datalist id="student_number0">
+                                        <% emp.forEach(student=> { %>
+                                            <option value="<%= student.student_number %>"></option>
+                                            <% }); %>
+                                    </datalist>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" name="student_quiz"
+                                            value="<%= points_data.student_quiz || 0 %>" />
+                                        student quiz
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="student_Task"
+                                            value="<%= points_data.student_Task || 0 %>" />
+                                        student Task
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="student_Friend"
+                                            value="<%= points_data.student_Friend || 0 %>" />
+                                        student Friend
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="student_bonus"
+                                            value="<%= points_data.student_bonus || 0 %>" />
+                                        student bonus
+                                    </label>
+                                </div>
+                                <button type="submit" id="submitBtn" disabled>Submit</button>
+                            </form>
+
+                            <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const students = <%- JSON.stringify(emp.map(s => ({ name: s.student_name, phone: s.student_number }))) %>;
+console.log("Students:", students);
+
+
+    const nameInput = document.getElementById("student_name_input");
+    const phoneInput = document.getElementById("student_phone_input");
+    const submitBtn = document.getElementById("submitBtn");
+    const form = document.getElementById("studentForm");
+
+    // Auto-fill based on name
+    nameInput.addEventListener("input", () => {
+        const enteredName = nameInput.value.trim();
+        const student = students.find(s => s.name === enteredName);
+
+        if (student) {
+            phoneInput.value = student.phone;
+        }
+
+        validateInputs();
+    });
+
+    // Auto-fill based on phone
+    phoneInput.addEventListener("input", () => {
+        const enteredPhone = phoneInput.value.trim();
+        const student = students.find(s => s.phone === enteredPhone);
+
+        if (student) {
+            nameInput.value = student.name;
+        }
+
+        validateInputs();
+    });
+
+    function validateInputs() {
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+
+        const isValid = students.some(s => s.name === name && s.phone === phone);
+        submitBtn.disabled = !isValid;
+    }
+
+    form.addEventListener("submit", (e) => {
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const matched = students.find(s => s.name === name && s.phone === phone);
+
+        if (!matched) {
+            e.preventDefault();
+            alert("❌ The student name and phone number must match correctly.");
+        }
+    });
+
+    validateInputs();
+});
+</script>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+
+
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="http://localhost:8080/assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="http://localhost:8080/assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="http://localhost:8080/assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="http://localhost:8080/assets/js/custom.js"></script>
+
+
+
+    <footer dir="ltr">
+        <p> Developed by <a href="https://www.linkedin.com/in/mark-roby-shafik/" target="_blank">Mark</a> </p>
+        <p>&copy; 2024 All rights reserved.</p>
+    </footer>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
