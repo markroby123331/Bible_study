@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/Picture1.png" type="image/png" />
+  <title>Sanawy Ranking</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fff;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid #ccc;
+      flex-wrap: nowrap;
+    }
+
+    .header-logo img {
+      height: 66px;
+    }
+
+    .header-title {
+      flex: 1;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-btn {
+      font-size: 14px;
+      padding: 6px 10px;
+      background-color: dodgerblue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 500px) {
+      .header {
+        flex-direction: row;
+        gap: 10px;
+        padding: 8px;
+      }
+
+      .header-title {
+        font-size: 16px;
+      }
+
+      .header-btn {
+        font-size: 12px;
+        padding: 5px 8px;
+      }
+
+      .header-logo img {
+        height: 50px;
+      }
+    }
+
+    .main {
+      padding: 16px;
+    }
+
+    .winner-chart {
+      margin-top: 20px;
+    }
+
+    .podium {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .podium-item {
+      text-align: center;
+    }
+
+    .student-name {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .step {
+      background-color: #ffcc00;
+      border-radius: 5px;
+      padding: 20px 0;
+      color: white;
+      font-size: 24px;
+    }
+
+    .first .step { background-color: #ffd700; height: 200px; }
+    .second .step { background-color: #c0c0c0; height: 150px; }
+    .third .step { background-color: #cd7f32; height: 100px; }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 40px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 800px;
+      direction: ltr;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      background-color: #fff;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    th:first-child, td:first-child {
+      position: sticky;
+      left: 0;
+      background-color: #f9f9f9;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        padding: 8px;
+        font-size: 10px;
+      }
+
+      .first .step { height: 140px; }
+      .second .step { height: 110px; }
+      .third .step { height: 90px; }
+
+      .student-name {
+        font-size: 10px;
+      }
+    }
+
+
+    .podium-item .student-name {
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-logo">
+      <img src="/Picture1.png" alt="Sanawy Logo" />
+    </div>
+    <div class="header-title">Sanawy Bible</div>
+    <a href="/login" class="header-btn">Sanawy Service</a>
+  </div>
+
+  <div class="main">
+<div class="winner-chart">
+  <div class="podium">
+
+    <div class="podium-item second">
+      <% second.forEach(s => { %>
+        <div class="student-name"><%= s.student_name %></div>
+      <% }) %>
+      <div class="step">2</div>
+    </div>
+
+    <div class="podium-item first">
+      <% first.forEach(s => { %>
+        <div class="student-name"><%= s.student_name %></div>
+      <% }) %>
+      <div class="step">1</div>
+    </div>
+
+    <div class="podium-item third">
+      <% third.forEach(s => { %>
+        <div class="student-name"><%= s.student_name %></div>
+      <% }) %>
+      <div class="step">3</div>
+    </div>
+
+  </div>
+</div>
+
+
+
+    <div class="table-wrapper">
+      <table id="scoreTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Attendance</th>
+            <th>Bible (Church)</th>
+            <th>Bible</th>
+            <th>Without Bible</th>
+            <th>Task</th>
+            <th>Friend</th>
+            <th>Contest</th>
+            <th>Quiz</th>
+            <th>Total</th>
+            <th>Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(s => { %>
+      <tr>
+        <td><%= s.student_name %></td>
+        <td><%= s.attendance %></td>
+        <td><%= s.bible_church %></td>
+        <td><%= s.bible %></td>
+        <td><%= s.without_bible %></td>
+        <td><%= s.task %></td>
+        <td><%= s.friend %></td>
+        <td><%= s.contest %></td>
+        <td><%= s.quiz %></td>
+        <td><%= s.total %></td>
+        <td><%= s.rank %></td>
+      </tr>
+    <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

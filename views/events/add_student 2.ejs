@@ -1,0 +1,1086 @@
+<html lang="ar" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add student </title>
+  <link rel="stylesheet" type="text/css" href="http://localhost:8080/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!--  Flatpickr  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
+  
+  <link href="http://localhost:8080/assets/css/bootstrap.css" rel="stylesheet" />
+
+  <link href="http://localhost:8080/assets/css/font-awesome.css" rel="stylesheet" />
+
+  <link href="http://localhost:8080/assets/css/custom.css" rel="stylesheet" />
+
+  <link href='http://localhost:8080/http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+<style>
+.formbold-input-group {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.formbold-form-label {
+  font-weight: 800;
+  font-size: 16px;
+  color: #333;
+}
+
+.formbold-form-input,
+.formbold-form-select {
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.formbold-form-input:focus,
+.formbold-form-select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.panel-body {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
+}
+
+.panel-footer {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.formbold-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.formbold-btn:hover {
+  background-color: #0056b3;
+}
+.page-inner {
+  border-radius: 2%;
+}
+.invalid {
+  border: 2px solid red;
+}
+.valid {
+  border: 2px solid green;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Show the modal when 'active' class is added */
+.modal.active {
+    display: block;
+}
+
+.overlay.active {
+    display: block;
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .formbold-input-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+</style>
+<!-- 
+  <style>
+    .form-grid {
+      display: grid;
+      grid-template-columns: 200px 200px 200px 100px 190px 200px 170px 150px 170px 100px;
+      gap: 10px;
+    }
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  .formbold-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+  }
+
+  .formbold-form-wrapper {
+    margin: 0 auto;
+    max-width: 570px;
+    width: 100%;
+    background: white;
+    padding: 40px;
+  }
+
+  .formbold-form-img {
+    margin-bottom: 45px;
+  }
+
+  .formbold-input-group {
+    margin-bottom: 18px;
+  }
+
+  .formbold-form-select {
+    width: 100%;
+    padding: 12px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-size: 16px;
+    color: #536387;
+    outline: none;
+    resize: none;
+  }
+
+  .formbold-input-radio-wrapper {
+    margin-bottom: 25px;
+  }
+  .formbold-radio-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .formbold-radio-label {
+    font-size: 14px;
+    line-height: 24px;
+    color: #07074d;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .formbold-input-radio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .formbold-radio-checkmark {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #ffffff;
+    border: 1px solid #dde3ec;
+    border-radius: 50%;
+  }
+  .formbold-radio-label
+    .formbold-input-radio:checked
+    ~ .formbold-radio-checkmark {
+    background-color: #6a64f1;
+  }
+  .formbold-radio-checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+
+  .formbold-radio-label
+    .formbold-input-radio:checked
+    ~ .formbold-radio-checkmark:after {
+    display: block;
+  }
+
+  .formbold-radio-label .formbold-radio-checkmark:after {
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+  }
+
+  .formbold-form-input {
+    width: 150%;
+    padding: 13px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    color: #07074d;
+    outline: none;
+    resize: none;
+  }
+  .formbold-form-input::placeholder {
+    color: #536387;
+  }
+  .formbold-form-input:focus {
+    border-color: #6a64f1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+  .formbold-form-label {
+    color: #07074d;
+    font-size: 14px;
+    line-height: 24px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .formbold-btn {
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 14px 25px;
+    border: none;
+    font-weight: 500;
+    background-color: #6a64f1;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px;
+  }
+  .formbold-btn:hover {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+
+
+  .formbold-input-group input.invalid {
+    border: 2px solid red;
+  }
+
+  .formbold-input-group input.valid {
+    border: 2px solid green;
+  }
+
+  .warning-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid red;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .warning-modal.active {
+    display: block;
+  }
+
+  .warning-modal h2 {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  .warning-modal p {
+    margin-bottom: 20px;
+  }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .modal-overlay.active {
+    display: block;
+  }
+  </style> -->
+
+  <!-- <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="adjust-nav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;Sanawy Bible</a>
+            </div>
+            <!-- <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">See Website</a></li>
+                    <li><a href="#">Open Ticket</a></li>
+                    <li><a href="#">Report Bug</a></li>
+                </ul>
+            </div> -->
+
+        </div>
+    </div>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li class="text-center user-image-back">
+                    <img src="assets/img/find_user.png" class="img-responsive" /><h3 style="color: antiquewhite;"><%= user_data.user %> </h3>
+                 
+                </li>
+
+
+                <li>
+                    <a href="/attendance"><i class="fa fa-desktop "></i>attendance</a>
+                </li>
+                <!-- <li>
+                    <a href="#"><i class="fa fa-edit "></i>UI Elements<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">Notifications</a>
+                        </li>
+                        <li>
+                            <a href="#">Elements</a>
+                        </li>
+                        <li>
+                            <a href="#">Free Link</a>
+                        </li>
+                    </ul>
+                </li> -->
+
+                <li>
+                    <a href="/add_student"><i class="fa fa-table "></i> Add Student</a>
+                </li>
+                <li>
+                    <a href="/ranking"><i class="fa fa-edit "></i>Ranking </a>
+                </li>
+
+
+                <!-- <li>
+                    <a href="#"><i class="fa fa-sitemap "></i>Multi-Level Dropdown<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">Second Level Link</a>
+                        </li>
+                        <li>
+                            <a href="#">Second Level Link</a>
+                        </li>
+                        <li>
+                            <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#">Third Level Link</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level Link</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level Link</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </li> -->
+                <li>
+                    <a href="#"><i class="fa fa-qrcode "></i>All Student</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i>Add Points</a>
+                </li>
+
+                <!-- <li>
+                    <a href="#"><i class="fa fa-edit "></i>Last Link </a>
+                </li>
+                <li>
+                    <a href="blank.html"><i class="fa fa-table "></i>Blank Page</a>
+                </li> -->
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner" style=" border-radius: 2%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Admin Dashboard => Sanawy Add student </h2>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <!-- <hr /> -->
+            <!-- <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <h5>Widget Box One</h5>
+                    <div class="panel panel-primary text-center no-boder bg-color-blue">
+                        <div class="panel-body">
+                            <i class="fa fa-bar-chart-o fa-5x"></i>
+                            <h3>120 GB </h3>
+                        </div>
+                        <div class="panel-footer back-footer-blue">
+                            Disk Space Available
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <h5>Widget Box Two</h5>
+                    <div class="alert alert-info text-center">
+                        <i class="fa fa-desktop fa-5x"></i>
+                        <h3>100$ </h3>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5>Buttons Samples</h5>
+                    <a href="#" class="btn btn-default">default</a>
+                    <a href="#" class="btn btn-primary">primary</a>
+                    <a href="#" class="btn btn-danger">danger</a>
+                    <a href="#" class="btn btn-success">success</a>
+                    <a href="#" class="btn btn-info">info</a>
+                    <a href="#" class="btn btn-warning">warning</a>
+                    <br />
+                    <br />
+                    <h5>Progressbar Samples</h5>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">40% Complete (success)</span>
+                        </div>
+                    </div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                            <span class="sr-only">20% Complete</span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div> -->
+            <!-- /. ROW  -->
+            <!-- <hr /> -->
+            <!-- <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Text Input Example</label>
+                        <input class="form-control" />
+                        <p class="help-block">Help text here.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Click to see blank page</label>
+                    <a href="blank.html" target="_blank" class="btn btn-danger btn-lg btn-block">BLANK PAGE</a>
+                </div>
+                <div class="col-md-4">
+                    For More Examples Please visit official bootstrap website <a href="http://getbootstrap.com" target="_blank">getbootstrap.com</a>
+                </div>
+            </div> -->
+            <!-- <hr />
+            <div class="row"> -->
+                <!-- <div class="col-md-6">
+                    <h5>Table  Sample One</h5>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div> -->
+                <!-- <div class="col-md-6">
+                    <h5>Student</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr class="info">
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr class="danger">
+                                    <td>4</td>
+                                    <td>John</td>
+                                    <td>Smith</td>
+                                    <td>@jsmith</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> -->
+            <!-- /. ROW  -->
+             <hr />
+
+
+            <div class="row" style=" border-radius: 2%;">
+                <div class="col-md-4">
+                    <!-- <h5>Panel Sample</h5> -->
+                    <div class="panel panel-primary" style=" border-radius: 2%;">
+                        <div class="panel-heading" style=" border-radius: 1%;">
+                           Add Student 
+                        </div>
+                        <div class="panel-body" style=" border-radius: 2%;">
+
+                          <form id="studentForm" action="add_student" method="POST">
+                            <input type="text" name="user_name" style="display: none;" value="<%= user_data.user %>" />
+                      
+                            <div class="formbold-input-group">
+                              <label for="name" class="formbold-form-label">Name</label>
+                              <input 
+                                type="text" 
+                                name="name" 
+                                id="name" 
+                                placeholder="Enter your name (at least 3 names)" 
+                                class="formbold-form-input"
+                              />
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label for="email" class="formbold-form-label">Email</label>
+                              <input 
+                                type="email" 
+                                name="email" 
+                                id="email" 
+                                placeholder="Enter your email" 
+                                class="formbold-form-input" 
+                              />
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label for="phone" class="formbold-form-label">Phone Number</label>
+                              <input 
+                                type="text" 
+                                name="phone" 
+                                id="phone" 
+                                placeholder="Enter your phone number (11 digits)" 
+                                class="formbold-form-input"
+                              />
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label class="formbold-form-label">What is your level?</label>
+                              <select class="formbold-form-select" name="level" id="level" required>
+                                <option value="" disabled selected>Select your level</option>
+                                <option value="student">Student</option>
+                                <option value="1s">1 Sanawy</option>
+                                <option value="2s">2 Sanawy</option>
+                                <option value="3s">3 Sanawy</option>
+                                <option value="1a">1 Aedadi</option>
+                                <option value="2a">2 Aedadi</option>
+                                <option value="3a">3 Aedadi</option>
+                                <option value="1g">1 Gamiea</option>
+                                <option value="1g+">1+ Gamiea</option>
+                              </select>
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label for="location" class="formbold-form-label">Location</label>
+                              <input 
+                                type="text" 
+                                name="location" 
+                                id="location" 
+                                placeholder="Enter your location" 
+                                class="formbold-form-input" 
+                              />
+                            </div>
+                      
+                           
+                         
+                            </div>
+
+                            <div id="modalOverlay" class="overlay"></div>
+
+
+                        <div class="panel-footer" style=" border-radius: 2%;">
+                          <div id="warningModal" class="modal">
+                            <p>Form contains errors. Please check your inputs.</p>
+                            <button onclick="closeModal()">OK</button>
+                          </div>
+                          <button type="submit" class="formbold-btn">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4">
+                    <h5>Accordion Sample</h5>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">Collapsible Group Item #1</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+                                <div class="panel-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Collapsible Group Item #2</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse in" style="height: auto;">
+                                <div class="panel-body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">Collapsible Group Item #3</a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                              
+
+                                    <div class="panel-body">
+                                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Tabs Sample</h5>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#home" data-toggle="tab">Home</a>
+                        </li>
+                        <li class=""><a href="#profile" data-toggle="tab">Profile</a>
+                        </li>
+                        <li class=""><a href="#messages" data-toggle="tab">Messages</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="home">
+                            <h4>Home Tab</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="profile">
+                            <h4>Profile Tab</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                            </p>
+
+                        </div>
+                        <div class="tab-pane fade" id="messages">
+                            <h4>Messages Tab</h4>
+                            <p >
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit eserunt mollit anim id est laborum.
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div> -->
+
+            </div>
+            <!-- /. ROW  -->
+            <!-- <hr />
+              <div class="row">
+                <div class="col-md-12">
+                    <h5>Information</h5>
+                        This is a type of bare admin that means you can customize your own admin using this admin structured  template . For More Examples of bootstrap elements or components please visit official bootstrap website <a href="http://getbootstrap.com" target="_blank">getbootstrap.com</a>
+                    . And if you want full template please download <a href="http://www.binarytheme.com/bootstrap-free-admin-dashboard-template/" target="_blank" >FREE BCORE ADMIN </a>&nbsp;,&nbsp;  <a href="http://www.binarytheme.com/free-bootstrap-admin-template-siminta/" target="_blank" >FREE SIMINTA ADMIN</a> and <a href="http://binarycart.com/" target="_blank" >FREE BINARY ADMIN</a>.
+
+                </div>
+            </div> -->
+            <!-- /. ROW  -->
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="http://localhost:8080/assets/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="http://localhost:8080/assets/js/bootstrap.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="http://localhost:8080/assets/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="http://localhost:8080/assets/js/custom.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("studentForm");
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+
+  if (!form || !nameInput || !emailInput || !phoneInput) {
+    console.error("One or more form elements not found!");
+    return;
+  }
+
+  nameInput.addEventListener("blur", () => validateField(nameInput, /(?:\b\w+\b[\s]*){3,}/));
+  emailInput.addEventListener("blur", () => validateField(emailInput, /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/));
+  phoneInput.addEventListener("blur", () => validateField(phoneInput, /^\d{11}$/));
+
+  form.addEventListener("submit", (e) => {
+    const nameValid = validateField(nameInput, /(?:\b\w+\b[\s]*){3,}/);
+    const emailValid = validateField(emailInput, /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/);
+    const phoneValid = validateField(phoneInput, /^\d{11}$/);
+
+    if (!nameValid || !emailValid || !phoneValid) {
+      e.preventDefault();
+      showModal();
+    }
+  });
+
+  function validateField(input, pattern) {
+    if (!pattern.test(input.value.trim())) {
+      input.classList.add("invalid");
+      input.classList.remove("valid");
+      return false;
+    } else {
+      input.classList.remove("invalid");
+      input.classList.add("valid");
+      return true;
+    }
+  }
+
+  function showModal() {
+          console.log("showModal() is being called!");  // Debugging log
+          const modal = document.getElementById("warningModal");
+          const overlay = document.getElementById("modalOverlay");
+  
+          if (modal && overlay) {
+              modal.classList.add("active");
+              overlay.classList.add("active");
+          } else {
+              console.error("Modal elements not found!");
+          }
+      }
+  
+      function closeModal() {
+          document.getElementById("warningModal").classList.remove("active");
+          document.getElementById("modalOverlay").classList.remove("active");
+      }
+});
+
+</script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+  <div class="navigation">
+    <div class="toggle"></div>
+    <div class="fullscreen">
+      <i class="sicon" onclick="openFullscreen();"><ion-icon name="resize-outline"></ion-icon></i>
+    </div>
+    <div class="fullscreen active">
+      <i class="sicon" onclick="closeFullscreen();"><ion-icon name="close-circle-outline"></ion-icon></i>
+    </div>
+    <ul>
+      <li class="list ">
+        <a href="/ranking">
+          <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+          <span class="title"><h5>Ranking</h5> </span>
+        </a>
+      </li>
+
+      <li class="list active">
+        <a href="/">
+          <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
+          <span class="title" ><h5>Add Student</h5> </span>
+        </a>
+      </li>
+
+
+      <li class="list">
+        <a href="/">
+          <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+          <span class="title"><h5>Attendance</h5> </span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a href="/">
+          <span class="icon"><ion-icon name="cash-outline"></ion-icon></span>
+          <span class="title"><h5>Add Points</h5></span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="/">
+          <span class="icon"><ion-icon name="file-tray-full-outline"></ion-icon></span>
+          <span class="title"><h5>All Points</h5></span>
+        </a>
+      </li>
+
+
+ 
+
+      <li class="list">
+        <form action="/login" class="action_btnn1" method="get">
+          <a href="/login">
+
+            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+            <span class="title">Exit</span>
+            <input class="textx160" type="number" value="1" id="logout_val" name="logout_val" />
+
+          </a>
+        </form>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div class="main">
+    <div class="header">
+    
+
+      </span>
+      <h3 style=" position: absolute; height: 30px; top: 20px; left: 20px; " 
+        style="text-decoration:none">Sanawy Add student</h3>
+        <div class="headerTitle">
+          <h1 class="h1" style="left: 150px;">
+            <%= user_data.user %>
+          </h1>
+        </div>
+    </div>
+
+
+
+
+    <div class="formbold-main-wrapper" dir="ltr">
+      <div class="formbold-form-wrapper">
+        <form id="studentForm" action="add_student" method="POST">
+          <input type="text" name="user_name" style="display: none;" value="<%= user_data.user %>" />
+    
+          <div class="formbold-input-group">
+            <label for="name" class="formbold-form-label">Name</label>
+            <input 
+              type="text" 
+              name="name" 
+              id="name" 
+              placeholder="Enter your name (at least 3 names)" 
+              class="formbold-form-input"
+            />
+          </div>
+    
+          <div class="formbold-input-group">
+            <label for="email" class="formbold-form-label">Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              id="email" 
+              placeholder="Enter your email" 
+              class="formbold-form-input" 
+            />
+          </div>
+    
+          <div class="formbold-input-group">
+            <label for="phone" class="formbold-form-label">Phone Number</label>
+            <input 
+              type="text" 
+              name="phone" 
+              id="phone" 
+              placeholder="Enter your phone number (11 digits)" 
+              class="formbold-form-input"
+            />
+          </div>
+    
+          <div class="formbold-input-group">
+            <label class="formbold-form-label">What is your level?</label>
+            <select class="formbold-form-select" name="level" id="level" required>
+              <option value="" disabled selected>Select your level</option>
+              <option value="student">Student</option>
+              <option value="1s">1 Sanawy</option>
+              <option value="2s">2 Sanawy</option>
+              <option value="3s">3 Sanawy</option>
+              <option value="1a">1 Aedadi</option>
+              <option value="2a">2 Aedadi</option>
+              <option value="3a">3 Aedadi</option>
+              <option value="1g">1 Gamiea</option>
+              <option value="1g+">1+ Gamiea</option>
+            </select>
+          </div>
+    
+          <div class="formbold-input-group">
+            <label for="location" class="formbold-form-label">Location</label>
+            <input 
+              type="text" 
+              name="location" 
+              id="location" 
+              placeholder="Enter your location" 
+              class="formbold-form-input" 
+            />
+          </div>
+    
+          <button type="submit" class="formbold-btn">Submit</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="modal-overlay" id="modalOverlay"></div>
+    
+    <div class="warning-modal" id="warningModal" dir="ltr">
+      <h2>Warning</h2>
+      <p id="warningMessage">Please fill out all fields correctly before submitting.</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+    
+    <script>
+      const form = document.getElementById("studentForm");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const phoneInput = document.getElementById("phone");
+    
+      nameInput.addEventListener("blur", () => validateField(nameInput, /(?:\b\w+\b[\s]*){3,}/));
+      emailInput.addEventListener("blur", () => validateField(emailInput, /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/));
+      phoneInput.addEventListener("blur", () => validateField(phoneInput, /^\d{11}$/));
+    
+      form.addEventListener("submit", (e) => {
+        const nameValid = validateField(nameInput, /(?:\b\w+\b[\s]*){3,}/);
+        const emailValid = validateField(emailInput, /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/);
+        const phoneValid = validateField(phoneInput, /^\d{11}$/);
+    
+        if (!nameValid || !emailValid || !phoneValid) {
+          e.preventDefault();
+          showModal();
+        }
