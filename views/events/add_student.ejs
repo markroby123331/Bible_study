@@ -1,0 +1,406 @@
+<html lang="ar" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add student </title>
+   <link rel="icon" href="/Picture1.png" type="image/png" />
+  <link rel="stylesheet" type="text/css" href="http://localhost:8080//style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!--  Flatpickr  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
+  
+  <link href="http://localhost:8080/assets/css/bootstrap.css" rel="stylesheet" />
+
+  <link href="http://localhost:8080/assets/css/font-awesome.css" rel="stylesheet" />
+
+  <link href="http://localhost:8080/assets/css/custom.css" rel="stylesheet" />
+
+  <link href='http://localhost:8080/http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+<style>
+.formbold-input-group {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.formbold-form-label {
+  font-weight: 800;
+  font-size: 16px;
+  color: #333;
+}
+
+.formbold-form-input,
+.formbold-form-select {
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.formbold-form-input:focus,
+.formbold-form-select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.panel-body {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
+}
+
+.panel-footer {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.formbold-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.formbold-btn:hover {
+  background-color: #0056b3;
+}
+.page-inner {
+  border-radius: 2%;
+}
+.invalid {
+  border: 2px solid red;
+}
+.valid {
+  border: 2px solid green;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Show the modal when 'active' class is added */
+.modal.active {
+    display: block;
+}
+
+.overlay.active {
+    display: block;
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .formbold-input-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+</style>
+ 
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="adjust-nav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href=""><ion-icon class="icon-inner" name="log-out-outline"></ion-icon>&nbsp;Sanawy Bible</a>
+            </div>
+           
+
+        </div>
+    </div>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li class="text-center user-image-back">
+                    <img src="assets/img/find_user.png" class="img-responsive" /><h3 style="color: antiquewhite;"><%= user_data.user %> </h3>
+                 
+                </li>
+
+
+                 <li>
+                    <a href="/attendance"><i class="fa fa-desktop "></i>attendance</a>
+                </li>
+              
+
+                <li>
+                    <a href="/add_student"><i class="fa fa-table "></i> Add Student</a>
+                </li>
+                <li>
+                    <a href="/ranking"><i class="fa fa-edit "></i>Ranking </a>
+                </li>
+
+
+              
+                <li>
+                    <a href="/all_student"><i class="fa fa-qrcode "></i>All Student</a>
+                </li>
+                <li>
+                    <a href="/add_student_points"><i class="fa fa-bar-chart-o"></i>Add Points</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner" style=" border-radius: 2%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Admin Dashboard => Sanawy Add student </h2>
+                </div>
+            </div>
+           
+            <!-- /. ROW  -->
+             <hr />
+
+
+            <div class="row" style=" border-radius: 2%;">
+                <div class="col-md-4">
+                    <!-- <h5>Panel Sample</h5> -->
+                    <div class="panel panel-primary" style=" border-radius: 2%;">
+                        <div class="panel-heading" style=" border-radius: 1%;">
+                           Add Student 
+                        </div>
+                        <div class="panel-body" style=" border-radius: 2%;">
+
+                          <form id="studentForm" action="add_student" method="POST">
+                            <input type="text" name="user_name" style="display: none;" value="<%= user_data.user %>" />
+                      
+                            <div class="formbold-input-group">
+                              <label for="name" class="formbold-form-label">Name</label>
+                              <input 
+                                type="text" 
+                                name="name" 
+                                id="name" 
+                                placeholder="Enter your name (at least 3 names)" 
+                                class="formbold-form-input"
+                              />
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label for="email" class="formbold-form-label">Email</label>
+                              <input 
+                                type="email" 
+                                name="email" 
+                                id="email" 
+                                placeholder="Enter your email" 
+                                class="formbold-form-input" 
+                              />
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label for="phone" class="formbold-form-label">Phone Number</label>
+                              <input 
+                                type="text" 
+                                name="phone" 
+                                id="phone" 
+                                placeholder="Enter your phone number (11 digits)" 
+                                class="formbold-form-input"
+                              />
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label class="formbold-form-label">What is your level?</label>
+                              <select class="formbold-form-select" name="level" id="level" required>
+                                <option value="" disabled selected>Select your level</option>
+                                <option value="student">Student</option>
+                                <option value="1s">1 Sanawy</option>
+                                <option value="2s">2 Sanawy</option>
+                                <option value="3s">3 Sanawy</option>
+                                <option value="1a">1 Aedadi</option>
+                                <option value="2a">2 Aedadi</option>
+                                <option value="3a">3 Aedadi</option>
+                                <option value="1g">1 Gamiea</option>
+                                <option value="1g+">1+ Gamiea</option>
+                              </select>
+                            </div>
+                      
+                            <div class="formbold-input-group">
+                              <label for="location" class="formbold-form-label">Location</label>
+                              <input 
+                                type="text" 
+                                name="location" 
+                                id="location" 
+                                placeholder="Enter your location" 
+                                class="formbold-form-input" 
+                              />
+                            </div>
+                      
+                           
+                         
+                            </div>
+
+                            <div id="modalOverlay" class="overlay"></div>
+
+
+                        <div class="panel-footer" style=" border-radius: 2%;">
+                          <div id="warningModal" class="modal">
+                            <p>Form contains errors. Please check your inputs.</p>
+                            <button onclick="closeModal()">OK</button>
+                          </div>
+                          <button type="submit" class="formbold-btn">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- /. ROW  -->
+           
+            <!-- /. ROW  -->
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="http://localhost:8080/assets/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="http://localhost:8080/assets/js/bootstrap.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="http://localhost:8080/assets/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="http://localhost:8080/assets/js/custom.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("studentForm");
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+
+  if (!form || !nameInput || !emailInput || !phoneInput) {
+    console.error("One or more form elements not found!");
+    return;
+  }
+
+  nameInput.addEventListener("blur", () => validateField(nameInput, /(?:\b\w+\b[\s]*){3,}/));
+  emailInput.addEventListener("blur", () => validateField(emailInput, /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/));
+  phoneInput.addEventListener("blur", () => validateField(phoneInput, /^\d{11}$/));
+
+  form.addEventListener("submit", (e) => {
+    const nameValid = validateField(nameInput, /(?:\b\w+\b[\s]*){3,}/);
+    const emailValid = validateField(emailInput, /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/);
+    const phoneValid = validateField(phoneInput, /^\d{11}$/);
+
+    if (!nameValid || !emailValid || !phoneValid) {
+      e.preventDefault();
+      showModal();
+    }
+  });
+
+  function validateField(input, pattern) {
+    if (!pattern.test(input.value.trim())) {
+      input.classList.add("invalid");
+      input.classList.remove("valid");
+      return false;
+    } else {
+      input.classList.remove("invalid");
+      input.classList.add("valid");
+      return true;
+    }
+  }
+
+  function showModal() {
+          console.log("showModal() is being called!");  // Debugging log
+          const modal = document.getElementById("warningModal");
+          const overlay = document.getElementById("modalOverlay");
+  
+          if (modal && overlay) {
+              modal.classList.add("active");
+              overlay.classList.add("active");
+          } else {
+              console.error("Modal elements not found!");
+          }
+      }
+  
+      function closeModal() {
+          document.getElementById("warningModal").classList.remove("active");
+          document.getElementById("modalOverlay").classList.remove("active");
+      }
+});
+
+</script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,1043 @@
+<html lang="ar" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance </title>
+  <link rel="stylesheet" type="text/css" href="http://localhost:8080//style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!--  Flatpickr  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
+  <script type="text/javascript" src="instascan.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+
+    
+  <link href="http://localhost:8080/assets/css/bootstrap.css" rel="stylesheet" />
+
+  <link href="http://localhost:8080/assets/css/font-awesome.css" rel="stylesheet" />
+
+  <link href="http://localhost:8080/assets/css/custom.css" rel="stylesheet" />
+
+  <link href='http://localhost:8080/http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+
+  <style>
+
+#qr-reader {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+}
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 200px 200px 200px 100px 190px 200px 170px 150px 170px 100px;
+      gap: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      direction: rtl;
+      text-align: right;
+    }
+
+    th,
+    td {
+      border: 1px solid #d8d8d8;
+      padding: 8px;
+      text-align: right;
+      background-color: transparent;
+    }
+
+    th {
+      background-color: #ffffff;
+    }
+
+    .export-btns {
+      direction: ltr;
+    }
+
+    .export-btns button {
+      margin-right: 10px;
+      
+    }
+
+    .edit-btn {
+      color: black;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+
+    }
+
+    
+    .edit-btn3 {
+      color: green;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+
+    }
+
+    .download00 {
+      color: black;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    .edit-btn2 {
+      color: red;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.7);
+      padding-top: 4%;
+    }
+
+    .modal-content {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      margin: 5% auto;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 99%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+
+    }
+
+    .filter-select {
+      width: 100%;
+    }
+    
+    .iconssss{
+      border: black;
+      padding: 2px 16px;
+    }
+    .cardsss {
+
+       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+      }
+      .cardsss:hover {
+         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+
+
+
+
+        .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.radio-tile-group .input-container {
+  position: relative;
+  height: 80px;
+  width: 80px;
+  margin: 0.5rem;
+}
+
+.radio-tile-group .input-container .radio-button {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.radio-tile-group .input-container .radio-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #079ad9;
+  border-radius: 5px;
+  padding: 1rem;
+  transition: transform 300ms ease;
+}
+
+.radio-tile-group .input-container .icon svg {
+  fill: #079ad9;
+  width: 2rem;
+  height: 2rem;
+}
+
+.radio-tile-group .input-container .radio-tile-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #079ad9;
+}
+
+.radio-tile-group .input-container .radio-button:checked + .radio-tile {
+  background-color: #079ad9;
+  border: 2px solid #079ad9;
+  color: white;
+  transform: scale(1.1, 1.1);
+}
+
+.radio-tile-group .input-container .radio-button:checked + .radio-tile .icon svg {
+  fill: white;
+  background-color: #079ad9;
+}
+
+.radio-tile-group .input-container .radio-button:checked + .radio-tile .radio-tile-label {
+  color: white;
+  background-color: #079ad9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  .formbold-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+  }
+
+  .formbold-form-wrapper {
+    margin: 0 auto;
+    max-width: 570px;
+    width: 100%;
+    background: white;
+    padding: 40px;
+  }
+
+  .formbold-form-img {
+    margin-bottom: 45px;
+  }
+
+  .formbold-input-group {
+    margin-bottom: 18px;
+  }
+
+  .formbold-form-select {
+    width: 100%;
+    padding: 12px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-size: 16px;
+    color: #536387;
+    outline: none;
+    resize: none;
+  }
+
+  .formbold-input-radio-wrapper {
+    margin-bottom: 25px;
+  }
+  .formbold-radio-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .formbold-radio-label {
+    font-size: 14px;
+    line-height: 24px;
+    color: #07074d;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .formbold-input-radio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .formbold-radio-checkmark {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #ffffff;
+    border: 1px solid #dde3ec;
+    border-radius: 50%;
+  }
+  .formbold-radio-label
+    .formbold-input-radio:checked
+    ~ .formbold-radio-checkmark {
+    background-color: #6a64f1;
+  }
+  .formbold-radio-checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+
+  .formbold-radio-label
+    .formbold-input-radio:checked
+    ~ .formbold-radio-checkmark:after {
+    display: block;
+  }
+
+  .formbold-radio-label .formbold-radio-checkmark:after {
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+  }
+
+  .formbold-form-input {
+    width: 150%;
+    padding: 13px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    color: #07074d;
+    outline: none;
+    resize: none;
+  }
+  .formbold-form-input::placeholder {
+    color: #536387;
+  }
+  .formbold-form-input:focus {
+    border-color: #6a64f1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+  .formbold-form-label {
+    color: #07074d;
+    font-size: 14px;
+    line-height: 24px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .formbold-btn {
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 14px 25px;
+    border: none;
+    font-weight: 500;
+    background-color: #6a64f1;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px;
+  }
+  .formbold-btn:hover {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+
+
+  .formbold-input-group input.invalid {
+    border: 2px solid red;
+  }
+
+  .formbold-input-group input.valid {
+    border: 2px solid green;
+  }
+
+  .warning-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid red;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .warning-modal.active {
+    display: block;
+  }
+
+  .warning-modal h2 {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  .warning-modal p {
+    margin-bottom: 20px;
+  }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .modal-overlay.active {
+    display: block;
+  }
+
+
+
+  #reader {
+      width: 300px;
+      height: 300px;
+      margin: auto;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+
+    #qr-reader {
+    border: 2px solid #ddd;
+    margin-top: 200px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+
+
+  .containerr {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      text-align: center;
+      background: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    /* Make scanner responsive */
+    #qr-reader {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin: 10px auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    /* Style for input field */
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    /* Style for checkbox */
+    .checkbox-label {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      transform: scale(1.2);
+    }
+
+    /* Submit button */
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    /* Make it responsive */
+    @media (max-width: 480px) {
+      .containerr {
+        width: 90%;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 18px;
+      }
+
+      input[type="text"] {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+
+
+  </style>
+
+
+</head>
+
+<body>
+
+
+
+
+  <div id="wrapper">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="adjust-nav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><i class="fa fa-square-o "></i>&nbsp;Sanawy Bible</a>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li class="text-center user-image-back">
+                    <img src="assets/img/find_user.png" class="img-responsive" /><h3 style="color: antiquewhite;"><%= user_data.user %> </h3>
+                 
+                </li>
+
+
+                <li>
+                    <a href="/attendance"><i class="fa fa-desktop "></i>attendance</a>
+                </li>
+               
+                <li>
+                    <a href="/add_student"><i class="fa fa-table "></i> Add Student</a>
+                </li>
+                <li>
+                    <a href="/ranking"><i class="fa fa-edit "></i>Ranking </a>
+                </li>
+
+
+             
+                <li>
+                    <a href="#"><i class="fa fa-qrcode "></i>All Student</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i>Add Points</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner" style=" border-radius: 2%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Admin Dashboard => Sanawy Add Attendance </h2>
+                </div>
+            </div>
+
+             <hr />
+
+
+            <div class="row" style=" border-radius: 2%;">
+                <div class="col-md-4">
+
+                  
+                  <div class="containerr">
+                    <h1>Scan QR Code</h1>
+                    <div id="qr-reader" style="width: 300px; height: 300px;"></div> 
+                    <p>Scanned Code: <span id="qr-output">None</span></p>
+                
+                    <form action="attendance" id="attendanceForm" method="POST">
+                        <input type="text" id="attendance_code" name="attendance_code" placeholder="Scan QR code..." required />
+                
+                        <label class="checkbox-label">
+                            <h2> Bible Status </h2>
+                            <select name="bible_status" id="bible-status">
+                                <option value="with_bible">With Bible</option>
+                                <option value="from_church">Got Bible from Church</option>
+                                <option value="without_bible">Without Bible</option>
+                            </select>
+                        </label>
+                
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                
+                <!-- QR Scanner Library -->
+                <script src="https://unpkg.com/html5-qrcode/html5-qrcode.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <script>
+                   function startCameraAndScanner() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        console.error("Camera streaming not supported by the browser.");
+        alert("Your browser does not support camera access. Try updating or using Chrome.");
+        return;
+    }
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then((stream) => {
+            document.getElementById('camera').srcObject = stream;
+
+            const qrScanner = new Html5Qrcode("qr-reader");
+            qrScanner.start(
+                { facingMode: "environment" }, // Use back camera
+                { fps: 10, qrbox: { width: 250, height: 250 }, useBarCodeDetectorIfSupported: false },
+                (decodedText) => {
+                    console.log(`Scanned: ${decodedText}`);
+                    document.getElementById("qr-output").textContent = decodedText;
+                    document.getElementById("attendance_code").value = decodedText;
+                },
+                (errorMessage) => console.warn("QR scan error:", errorMessage)
+            ).catch(err => {
+                console.error("Failed to start QR scanner:", err);
+                alert("QR scanner failed to start. Try a different browser.");
+            });
+
+        }).catch((error) => {
+            console.error("Camera permission denied:", error);
+            alert("Please allow camera access in your browser settings.");
+        });
+}
+
+document.addEventListener("DOMContentLoaded", startCameraAndScanner);
+
+
+let scanner = new Instascan.Scanner({ video: document.getElementById('camera') });
+
+scanner.addListener('scan', function (content) {
+    console.log("Scanned: " + content);
+    document.getElementById("qr-output").textContent = content;
+    document.getElementById("attendance_code").value = content;
+});
+
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+    } else {
+        alert("No cameras found.");
+    }
+}).catch(function (error) {
+    console.error("Camera error:", error);
+});
+
+
+                </script>
+                
+                  
+            </div>
+          
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="http://localhost:8080/assets/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="http://localhost:8080/assets/js/bootstrap.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="http://localhost:8080/assets/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="http://localhost:8080/assets/js/custom.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+  <div class="navigation">
+    <div class="toggle"></div>
+    <div class="fullscreen">
+      <i class="sicon" onclick="openFullscreen();"><ion-icon name="resize-outline"></ion-icon></i>
+    </div>
+    <div class="fullscreen active">
+      <i class="sicon" onclick="closeFullscreen();"><ion-icon name="close-circle-outline"></ion-icon></i>
+    </div>
+    <ul>
+      <li class="list ">
+        <a href="/ranking">
+          <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+          <span class="title"><h5>Ranking</h5> </span>
+        </a>
+      </li>
+
+      <li class="list active">
+        <a href="/">
+          <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
+          <span class="title" ><h5>Add Student</h5> </span>
+        </a>
+      </li>
+
+
+      <li class="list">
+        <a href="/">
+          <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+          <span class="title"><h5>Attendance</h5> </span>
+        </a>
+      </li>
+
+      <li class="list">
+        <a href="/">
+          <span class="icon"><ion-icon name="cash-outline"></ion-icon></span>
+          <span class="title"><h5>Add Points</h5></span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="/">
+          <span class="icon"><ion-icon name="file-tray-full-outline"></ion-icon></span>
+          <span class="title"><h5>All Points</h5></span>
+        </a>
+      </li>
+
+
+ 
+
+      <li class="list">
+        <form action="/login" class="action_btnn1" method="get">
+          <a href="/login">
+
+            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+            <span class="title">Exit</span>
+            <input class="textx160" type="number" value="1" id="logout_val" name="logout_val" />
+
+          </a>
+        </form>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div class="main">
+    <div class="header">
+    
+
+      </span>
+      <h3 style=" position: absolute; height: 30px; top: 20px; left: 20px; " 
+        style="text-decoration:none">Sanawy Add student</h3>
+        <div class="headerTitle">
+          <h1 class="h1" style="left: 150px;">
+            <%= user_data.user %>
+          </h1>
+        </div>
+    </div> -->
+    <!-- <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+
+    <h1 style="text-align: center;">QR Code Scanner</h1>
+  <div id="qr-reader" style="width: 300px; margin: auto; margin-top: 20px; border: 1px solid #ccc; padding: 10px;"></div>
+  <div id="qr-reader-results" style="text-align: center; margin-top: 20px;">
+    <strong>Scanned Code:</strong> <span id="qr-result">None</span>
+  </div>
+
+  <script>
+    // Success callback when QR code is scanned
+    function onScanSuccess(decodedText, decodedResult) {
+      console.log(`Code scanned successfully: ${decodedText}`, decodedResult);
+      document.getElementById("qr-result").textContent = decodedText;
+
+      // Optional: Stop the scanner after a successful scan
+      qrCodeScanner.clear().then(() => {
+        console.log("QR Code Scanner stopped after successful scan.");
+      }).catch(err => {
+        console.error("Error stopping scanner:", err);
+      });
+    }
+
+    // Error callback for scanning errors
+    function onScanError(error) {
+      console.warn(`QR scan error: ${error}`);
+    }
+
+    // Initialize QR Scanner
+    const qrCodeScanner = new Html5Qrcode("qr-reader");
+
+    // Check camera permissions and initialize scanner
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        console.log("Camera is accessible.");
+        stream.getTracks().forEach(track => track.stop()); // Stop the preview to avoid conflicts
+
+        // Start the scanner
+        qrCodeScanner.start(
+          { facingMode: "environment" }, // Use back camera
+          {
+            fps: 10, // Scans per second
+            qrbox: { width: 250, height: 250 }, // Scanning box size
+          },
+          onScanSuccess,
+          onScanError
+        ).catch(err => {
+          console.error("Failed to start QR Code Scanner:", err);
+          alert("Unable to access the camera. Please check your browser permissions.");
+        });
+      })
+      .catch(err => {
+        console.error("Camera access denied or unavailable:", err);
+        alert("Camera access is required for QR code scanning. Please check permissions.");
+      });
+  </script> -->
+  <!-- <video id="preview"></video>
+  <script type="text/javascript">
+    let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+    scanner.addListener('scan', function (content) {
+      console.log(content);
+    });
+    Instascan.Camera.getCameras().then(function (cameras) {
+      if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+      } else {
+        console.error('No cameras found.');
+      }
+    }).catch(function (e) {
+      console.error(e);
+    });
+  </script> -->
+
+  <!-- <div class="containerr">
+    <h1>Scan QR Code</h1>
+    <div id="qr-reader"></div>
+    <p>Scanned Code: <span id="qr-output">None</span></p>
+    
+    <form action="attendance" id="attendanceForm" method="POST">
+      <input type="text" id="attendance_code" name="attendance_code" value="" placeholder="Scan QR code..." required />
+  
+  <label class="checkbox-label">
+    <h2> Bible Status </h2> 
+    <select name="bible_status" id="bible-status">
+      <option value="with_bible">With Bible</option>
+      <option value="from_church">Got Bible from Church</option>
+      <option value="without_bible">Without Bible</option>
+    </select>
+  </label>
+
+  <button type="submit">Submit</button>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <script>
+    function onScanSuccess(decodedText, decodedResult) {
+      console.log(`Scanned: ${decodedText}`);
+      
+      // Display scanned QR code text
+      document.getElementById("qr-output").textContent = decodedText;
+  
+      // Auto-fill input field with scanned QR code text
+      document.getElementById("attendance_code").value = decodedText; // FIXED: Corrected ID
+    }
+  
+    function onScanError(errorMessage) {
+      console.warn("QR scan error:", errorMessage);
+    }
+  
+    const qrScanner = new Html5Qrcode("qr-reader");
+  
+    qrScanner.start(
+      { facingMode: "environment" }, // Use back camera on mobile
+      { fps: 10, qrbox: { width: 250, height: 250 } }, // Define QR scanning area
+      onScanSuccess,
+      onScanError
+    ).catch(err => console.error("Failed to start QR scanner:", err));
+  </script> -->
+  
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    let navigation = document.querySelector('.navigation');
+    let toggle = document.querySelector('.toggle');
+    let mains = document.querySelector('.main');
+    toggle.onclick = function () {
+      navigation.classList.toggle('active');
+      mains.classList.toggle('active');
+    }  
+  </script>
+
+
+
+  <script>
+    let list = document.querySelectorAll('.list');
+    for (let i = 0; i < list.length; i++) {
+      list[i].onclick = function () {
+        let j = 0;
+        while (j < list.length) {
+          list[j++].className = 'list';
+        }
+        list[i].className = 'list active';
+      }
+    }
+  </script>
+
+  <script>
+
+    var elem = document.documentElement;
+    function openFullscreen() {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+      }
+    }
+
+    function closeFullscreen() {
+      if (document.exitFullscreen) {
+
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+      }
+    }
+  
